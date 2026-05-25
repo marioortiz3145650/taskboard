@@ -4,11 +4,13 @@
   "version": "1.0.0",
   "dependencies": {
     "@expo/ui": "~56.0.13",
+    "@expo/vector-icons": "^15.0.2",
     "@nozbe/watermelondb": "^0.28.0",
     "@skam22/watermelondb-expo-plugin": "^50.0.2",
     "eslint-plugin-react-native": "^5.0.0",
     "expo": "~56.0.4",
     "expo-build-properties": "^56.0.14",
+    "expo-camera": "^56.0.7",
     "expo-constants": "~56.0.15",
     "expo-device": "~56.0.4",
     "expo-font": "~56.0.5",

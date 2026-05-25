@@ -1,7 +1,7 @@
 import { appSchema, tableSchema } from '@nozbe/watermelondb';
 
 export default appSchema({
-  version: 1,
+  version: 2, 
   tables: [
     tableSchema({
       name: 'tasks',
@@ -12,6 +12,7 @@ export default appSchema({
         { name: 'user_id', type: 'number' },
         { name: 'is_dirty', type: 'boolean' },
         { name: 'synced_at', type: 'number' },
+        { name: 'attachment_uri', type: 'string', isOptional: true }, // Campo para la foto
       ],
     }),
   ],

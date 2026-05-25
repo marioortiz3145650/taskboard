@@ -9,5 +9,6 @@ export default class Task extends Model {
   @field('completed') completed!: boolean;
   @field('user_id') userId!: number;
   @field('is_dirty') isDirty!: boolean;
+  @field('attachment_uri') attachmentUri?: string | null; // Decorador para la foto
   @readonly @date('synced_at') syncedAt!: Date;
 }
