@@ -12,3 +12,8 @@
 -keep class com.facebook.react.turbomodule.** { *; }
 
 # Add any project specific keep options here:
+-keep class com.anonymous.Mobil.camera.** { *; }
+-keep class com.anonymous.Mobil.avatar.** { *; }
+-keepclassmembers class * extends com.facebook.react.bridge.ReactContextBaseJavaModule {
+  @com.facebook.react.bridge.ReactMethod *;
+}
