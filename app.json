@@ -4,7 +4,7 @@
     "slug": "Mobil",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/new_icon.png",
     "scheme": "mobil",
     "userInterfaceStyle": "automatic",
     "ios": {

@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform, PermissionsAndroid } from 'react-native';
 
 const { CameraModule } = NativeModules;
 
@@ -14,12 +14,27 @@ export const takePhotoNative = async (): Promise<PhotoResult | null> => {
     throw new Error('CameraModule no está disponible. Ejecuta: npx expo run:android');
   }
 
+  if (Platform.OS === 'android') {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+      {
+        title: 'Permiso de Cámara',
+        message: 'TaskBoard necesita acceso a tu cámara para adjuntar fotos.',
+        buttonPositive: 'Permitir',
+        buttonNegative: 'Cancelar',
+      }
+    );
+    if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+      throw new Error('Permiso de cámara denegado');
+    }
+  }
+
   try {
     const result = await CameraModule.takePicture();
     return result;
   } catch (error: any) {
     if (error.code === 'CANCELLED' || error.message?.includes('cancel')) {
-      return null; 
+      return null;
     }
     console.error('Error tomando foto nativa:', error);
     throw error;
