@@ -12,9 +12,20 @@ interface TaskItemProps {
   onEdit: (task: Task) => void;
   onUpdatePhoto: (task: Task, uri: string) => void;
   showToggle?: boolean;
+  showActions?: boolean;
+  showPhoto?: boolean;
 }
 
-export function TaskItem({ task, onToggle, onDelete, onEdit, onUpdatePhoto, showToggle = true }: TaskItemProps) {
+export function TaskItem({ 
+  task, 
+  onToggle, 
+  onDelete, 
+  onEdit, 
+  onUpdatePhoto, 
+  showToggle = true,
+  showActions = true,
+  showPhoto = true
+}: TaskItemProps) {
   const isCompleted = task.completed;
   const photoUri = task.attachmentUri || null;
 
@@ -36,21 +47,23 @@ export function TaskItem({ task, onToggle, onDelete, onEdit, onUpdatePhoto, show
   return (
     <View style={styles.container} key={`${task.id}-${photoUri}`}>
       {/* Miniatura / Botón Cámara */}
-      <Pressable style={styles.photoContainer} onPress={handleTakePhoto}>
-        {photoUri ? (
-          <Image 
-            source={{ uri: photoUri }} 
-            style={styles.thumbnail} 
-            resizeMode="cover" 
-            // Forzar recarga de imagen si la URI es la misma pero el contenido cambió (raro, pero seguro)
-            fadeDuration={0} 
-          />
-        ) : (
-          <View style={styles.placeholder}>
-            <Ionicons name="camera-outline" size={20} color="#9CA3AF" />
-          </View>
-        )}
-      </Pressable>
+      {showPhoto && (
+        <Pressable style={styles.photoContainer} onPress={handleTakePhoto}>
+          {photoUri ? (
+            <Image 
+              source={{ uri: photoUri }} 
+              style={styles.thumbnail} 
+              resizeMode="cover" 
+              // Forzar recarga de imagen si la URI es la misma pero el contenido cambió (raro, pero seguro)
+              fadeDuration={0} 
+            />
+          ) : (
+            <View style={styles.placeholder}>
+              <Ionicons name="camera-outline" size={20} color="#9CA3AF" />
+            </View>
+          )}
+        </Pressable>
+      )}
 
       {/* Contenido Texto */}
       <Pressable
@@ -73,13 +86,17 @@ export function TaskItem({ task, onToggle, onDelete, onEdit, onUpdatePhoto, show
           </Pressable>
         )}
 
-        <Pressable onPress={() => onEdit(task)} style={styles.iconButton}>
-          <Ionicons name="pencil-outline" size={20} color="#60A5FA" />
-        </Pressable>
+        {showActions && (
+          <>
+            <Pressable onPress={() => onEdit(task)} style={styles.iconButton}>
+              <Ionicons name="pencil-outline" size={20} color="#60A5FA" />
+            </Pressable>
 
-        <Pressable onPress={() => onDelete(task)} style={styles.iconButton}>
-          <Ionicons name="trash-outline" size={20} color="#F87171" />
-        </Pressable>
+            <Pressable onPress={() => onDelete(task)} style={styles.iconButton}>
+              <Ionicons name="trash-outline" size={20} color="#F87171" />
+            </Pressable>
+          </>
+        )}
       </View>
     </View>
   );

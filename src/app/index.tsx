@@ -206,6 +206,8 @@ export default function DashboardScreen() {
               onEdit={handleEdit}
               onUpdatePhoto={handleUpdatePhoto}
               showToggle={filter === 'completed' || filter === 'pending'}
+              showActions={filter === 'all'}
+              showPhoto={true}
             />
   )}
   contentContainerStyle={styles.listContent}

@@ -107,9 +107,11 @@ const deleteTask = async (task: Task) => {
         (record as any)._raw.is_dirty = true;
       });
     });
-    // Fuerza re-fetch manual
-    const updated = await tasksCollection.query().fetch();
-    setTasks([...updated]);
+    // Fuerza re-fetch manual respetando los filtros actuales
+    const updatedFiltered = await query.fetch();
+    setTasks([...updatedFiltered]);
+    const updatedAll = await tasksCollection.query().fetch();
+    setAllTasks([...updatedAll]);
   };
 
 

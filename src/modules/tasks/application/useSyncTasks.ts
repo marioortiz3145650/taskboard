@@ -87,7 +87,18 @@ export function useSyncTasks() {
       setLastSyncAt(Date.now());
     } catch (error: any) {
       console.warn('Sync failed, using offline data:', error);
-      setErrorMessage(error?.message || 'Sync failed due to network issues');
+      const isNetworkError = 
+        error?.message?.includes('fetch failed') || 
+        error?.message?.includes('Network request failed') ||
+        error?.message?.includes('UnknownHostException') ||
+        error?.message?.includes('Failed to connect') ||
+        error?.message?.includes('resolve host');
+      
+      setErrorMessage(
+        isNetworkError 
+          ? 'Trabajando en modo local (sin conexión a internet).' 
+          : (error?.message || 'Error de sincronización.')
+      );
     } finally {
       setSyncing(false);
     }
