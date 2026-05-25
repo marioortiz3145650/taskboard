@@ -10,8 +10,11 @@ export interface PhotoResult {
 }
 
 export const takePhotoNative = async (): Promise<PhotoResult | null> => {
+  console.log('CameraModule disponible:', !!CameraModule);
+  console.log('CameraModule:', CameraModule);
+  
   if (!CameraModule) {
-    throw new Error('CameraModule no está disponible. Ejecuta: npx expo run:android');
+    throw new Error('CameraModule no está disponible.');
   }
 
   if (Platform.OS === 'android') {

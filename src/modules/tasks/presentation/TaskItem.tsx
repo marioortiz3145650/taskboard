@@ -1,6 +1,6 @@
 // src/modules/tasks/presentation/TaskItem.tsx
 import React from 'react';
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Image, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Task from '../data/TaskModel';
 import { takePhotoNative } from '../../camera/CameraService';
@@ -19,6 +19,7 @@ export function TaskItem({ task, onToggle, onDelete, onEdit, onUpdatePhoto, show
   const photoUri = task.attachmentUri || null;
 
   const handleTakePhoto = async () => {
+     Alert.alert('Debug', 'Botón cámara presionado');
     try {
       const result = await takePhotoNative();
       if (result && result.uri) {
