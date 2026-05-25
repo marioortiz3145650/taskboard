@@ -1,0 +1,24 @@
+# Dependencias
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# Archivos intermedios y de compilación nativa de Android (¡Esto pesa más de 400MB!)
+android/.gradle/
+android/build/
+android/app/build/
+android/app/.cxx/
+
+# Archivos de compilación de iOS
+ios/build/
+DerivedData/
+
+# Registros y depuración
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.DS_Store
