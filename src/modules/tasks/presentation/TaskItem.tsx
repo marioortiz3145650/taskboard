@@ -19,7 +19,6 @@ export function TaskItem({ task, onToggle, onDelete, onEdit, onUpdatePhoto, show
   const photoUri = task.attachmentUri || null;
 
   const handleTakePhoto = async () => {
-     Alert.alert('Debug', 'Botón cámara presionado');
     try {
       const result = await takePhotoNative();
       if (result && result.uri) {
